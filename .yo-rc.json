@@ -1,6 +1,6 @@
 {
   "generator-jhipster": {
-    "applicationType": "microservice",
+    "applicationType": "gateway",
     "gitCompany": "",
     "baseName": "driverApp",
     "packageName": "com.driverapp",
@@ -27,7 +27,7 @@
     "languages": [
       "en"
     ],
-    "clientFramework": "angularX",
+    "clientFramework": "react",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "6.0.1",
     "jwtSecretKey": "Yjg2YjJjNzJiYzQ1ZTZjMjE1NjdkZGQyMjcyNGVhMjJhODIyYTA5NjA5Njk2M2FkNjM2NzFmZWQ4Njk1OGI1NmFkODA0MzU1ZmE0OWI0ZTYyOThlYWI4MzJlYWE2NTE0NWQ3OTlhMzNmMzA5MzkwYjM3NTI3NjFjOTU4MTM5YWY=",
