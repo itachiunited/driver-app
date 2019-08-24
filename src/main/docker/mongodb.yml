@@ -1,0 +1,8 @@
+version: '2'
+services:
+  driverapp-mongodb:
+    image: mongo:4.0.10
+    ports:
+      - '27017:27017'
+    # volumes:
+    #     - ~/volumes/jhipster/driverApp/mongodb/:/data/db/
