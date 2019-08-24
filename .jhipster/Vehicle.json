@@ -76,7 +76,7 @@
     "service": "no",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
-    "clientRootFolder": "driverApp",
+    "clientRootFolder": "",
     "applications": "*",
     "microserviceName": "driverApp"
 }
