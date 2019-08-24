@@ -31,6 +31,14 @@ relationship OneToMany {
 	Driver{services} to Services
 }
 
+entity DeviceDetails {
+	deviceId String required
+}
+
+relationship OneToMany {
+	Driver{devices} to DeviceDetails
+}
+
 entity Location {
 	id String required,
     addressLine1 String required,
