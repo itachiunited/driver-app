@@ -44,12 +44,12 @@ public class ElasticsearchConfiguration {
     @Primary
     public ElasticsearchOperations elasticsearchTemplate(final JestClient jestClient,
                                                          final ElasticsearchConverter elasticsearchConverter,
-                                                         final SimpleElasticsearchMappingContext simpleElasticsearchMappingContext,
                                                          EntityMapper mapper) {
+        CustomElasticsearchMappingContext mappingContext = new CustomElasticsearchMappingContext();
         return new JestElasticsearchTemplate(
             jestClient,
-            new MappingElasticsearchConverter(new CustomElasticsearchMappingContext()),
-            new DefaultJestResultsMapper(simpleElasticsearchMappingContext, mapper));
+            new MappingElasticsearchConverter(mappingContext),
+            new DefaultJestResultsMapper(mappingContext, mapper));
     }
 
     public class CustomEntityMapper implements EntityMapper {
