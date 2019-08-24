@@ -81,7 +81,7 @@ public class DriverResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/drivers-phonenumber-capture")
-    public ResponseEntity<Driver> createNGUserWithPhoneNumber(@Valid @RequestBody Driver driver) throws URISyntaxException {
+    public ResponseEntity<Driver> createDriverWithPhoneNumber(@Valid @RequestBody Driver driver) throws URISyntaxException {
         log.debug("REST request to save Driver : {}", driver);
         if (driver.getId() != null) {
             throw new BadRequestAlertException("A new driver cannot already have an ID", ENTITY_NAME, "idexists");
@@ -106,7 +106,7 @@ public class DriverResource {
     }
 
     @PostMapping("/drivers-verify-token")
-    public ResponseEntity<Driver> createNGUserVerifyToken(@Valid @RequestBody Map driverMap) throws URISyntaxException {
+    public ResponseEntity<Driver> createDriverVerifyToken(@Valid @RequestBody Map driverMap) throws URISyntaxException {
         log.debug("REST request to save Driver : {}", driverMap);
 
         // Change this to session
