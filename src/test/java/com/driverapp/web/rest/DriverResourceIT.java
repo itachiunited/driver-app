@@ -132,7 +132,7 @@ public class DriverResourceIT {
             .lastName(DEFAULT_LAST_NAME)
             .email(DEFAULT_EMAIL)
             .password(DEFAULT_PASSWORD)
-            .phoneNumer(DEFAULT_PHONE_NUMER)
+            .phoneNumber(DEFAULT_PHONE_NUMER)
             .status(DEFAULT_STATUS)
             .oneTimeCode(DEFAULT_ONE_TIME_CODE)
             .oneTimeExpirationTime(DEFAULT_ONE_TIME_EXPIRATION_TIME)
@@ -154,7 +154,7 @@ public class DriverResourceIT {
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
             .password(UPDATED_PASSWORD)
-            .phoneNumer(UPDATED_PHONE_NUMER)
+            .phoneNumber(UPDATED_PHONE_NUMER)
             .status(UPDATED_STATUS)
             .oneTimeCode(UPDATED_ONE_TIME_CODE)
             .oneTimeExpirationTime(UPDATED_ONE_TIME_EXPIRATION_TIME)
@@ -189,7 +189,7 @@ public class DriverResourceIT {
         assertThat(testDriver.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testDriver.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testDriver.getPassword()).isEqualTo(DEFAULT_PASSWORD);
-        assertThat(testDriver.getPhoneNumer()).isEqualTo(DEFAULT_PHONE_NUMER);
+        assertThat(testDriver.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMER);
         assertThat(testDriver.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testDriver.getOneTimeCode()).isEqualTo(DEFAULT_ONE_TIME_CODE);
         assertThat(testDriver.getOneTimeExpirationTime()).isEqualTo(DEFAULT_ONE_TIME_EXPIRATION_TIME);
@@ -306,7 +306,7 @@ public class DriverResourceIT {
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].password").value(hasItem(DEFAULT_PASSWORD.toString())))
-            .andExpect(jsonPath("$.[*].phoneNumer").value(hasItem(DEFAULT_PHONE_NUMER.toString())))
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMER.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].oneTimeCode").value(hasItem(DEFAULT_ONE_TIME_CODE.toString())))
             .andExpect(jsonPath("$.[*].oneTimeExpirationTime").value(hasItem(DEFAULT_ONE_TIME_EXPIRATION_TIME.toString())))
@@ -330,7 +330,7 @@ public class DriverResourceIT {
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.password").value(DEFAULT_PASSWORD.toString()))
-            .andExpect(jsonPath("$.phoneNumer").value(DEFAULT_PHONE_NUMER.toString()))
+            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMER.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.oneTimeCode").value(DEFAULT_ONE_TIME_CODE.toString()))
             .andExpect(jsonPath("$.oneTimeExpirationTime").value(DEFAULT_ONE_TIME_EXPIRATION_TIME.toString()))
@@ -361,7 +361,7 @@ public class DriverResourceIT {
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
             .password(UPDATED_PASSWORD)
-            .phoneNumer(UPDATED_PHONE_NUMER)
+            .phoneNumber(UPDATED_PHONE_NUMER)
             .status(UPDATED_STATUS)
             .oneTimeCode(UPDATED_ONE_TIME_CODE)
             .oneTimeExpirationTime(UPDATED_ONE_TIME_EXPIRATION_TIME)
@@ -383,7 +383,7 @@ public class DriverResourceIT {
         assertThat(testDriver.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testDriver.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testDriver.getPassword()).isEqualTo(UPDATED_PASSWORD);
-        assertThat(testDriver.getPhoneNumer()).isEqualTo(UPDATED_PHONE_NUMER);
+        assertThat(testDriver.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMER);
         assertThat(testDriver.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testDriver.getOneTimeCode()).isEqualTo(UPDATED_ONE_TIME_CODE);
         assertThat(testDriver.getOneTimeExpirationTime()).isEqualTo(UPDATED_ONE_TIME_EXPIRATION_TIME);
@@ -451,7 +451,7 @@ public class DriverResourceIT {
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].password").value(hasItem(DEFAULT_PASSWORD)))
-            .andExpect(jsonPath("$.[*].phoneNumer").value(hasItem(DEFAULT_PHONE_NUMER)))
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMER)))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].oneTimeCode").value(hasItem(DEFAULT_ONE_TIME_CODE)))
             .andExpect(jsonPath("$.[*].oneTimeExpirationTime").value(hasItem(DEFAULT_ONE_TIME_EXPIRATION_TIME.toString())))

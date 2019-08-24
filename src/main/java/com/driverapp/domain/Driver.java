@@ -41,8 +41,8 @@ public class Driver implements Serializable {
     private String password;
 
     @NotNull
-    @Field("phone_numer")
-    private String phoneNumer;
+    @Field("phone_number")
+    private String phoneNumber;
 
     @Field("status")
     private Status status;
@@ -142,17 +142,17 @@ public class Driver implements Serializable {
         this.password = password;
     }
 
-    public String getPhoneNumer() {
-        return phoneNumer;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public Driver phoneNumer(String phoneNumer) {
-        this.phoneNumer = phoneNumer;
+    public Driver phoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
         return this;
     }
 
-    public void setPhoneNumer(String phoneNumer) {
-        this.phoneNumer = phoneNumer;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Status getStatus() {
@@ -359,7 +359,7 @@ public class Driver implements Serializable {
             ", lastName='" + getLastName() + "'" +
             ", email='" + getEmail() + "'" +
             ", password='" + getPassword() + "'" +
-            ", phoneNumer='" + getPhoneNumer() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
             ", status='" + getStatus() + "'" +
             ", oneTimeCode='" + getOneTimeCode() + "'" +
             ", oneTimeExpirationTime='" + getOneTimeExpirationTime() + "'" +
