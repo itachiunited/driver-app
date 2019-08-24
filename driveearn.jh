@@ -1,0 +1,97 @@
+entity Driver
+{
+	id String required,
+    firstName String required,
+    lastName String required,
+    email String required,
+    password String,
+    phoneNumer String,
+    status Status,
+    oneTimeCode String,
+    oneTimeExpirationTime Instant,
+    driverLicense String required,
+    phoneType PhoneType,
+    duiConviction Boolean,
+    felonyConviction Boolean
+}
+
+relationship OneToOne {
+	Driver{location} to Location
+}
+
+relationship OneToOne {
+	Vehicle{autoInsurance} to Insurance
+}
+
+relationship OneToMany {
+	Driver{car} to Vehicle
+}
+
+relationship OneToMany {
+	Driver{services} to ServiceType
+}
+
+entity Location {
+	id String required,
+    addressLine1 String required,
+    addressLine2 String,
+    city String required,
+    state String required,
+    zip String required,
+    country String required,
+    latitude String,
+    longitue String
+}
+
+enum PhoneType
+{
+	IPHONE, ANDROID
+}
+
+enum Status {
+	INVITED, CONFIRMED, DENIED
+}
+
+entity Vehicle
+{
+	id String required,
+    type VehicleType required,
+    make String required,
+    model String required,
+    year String required,
+    plateNumber String required,
+    supportHeavyTransport Boolean,
+    vinNumber String,
+    registrationExpDate Instant required
+}
+
+entity Insurance
+{
+	id String required,
+    type InsuranceType required,
+    insuranceProvider String required,
+    insuranceExpDate Instant required
+}
+
+enum ServiceType
+{
+	FoodDelivery,Errands,Airport,Hotel,HeavyItems
+}
+
+enum InsuranceType
+{
+	AUTO,HOME
+}
+enum VehicleType
+{
+	SEDAN,SUV,PICKUP,VAN
+}
+
+entity Business
+{
+	id String required,
+    name String required,
+    type String required,
+    address String required,
+    phoneNumber String
+}
