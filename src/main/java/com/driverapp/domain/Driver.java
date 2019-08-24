@@ -28,21 +28,19 @@ public class Driver implements Serializable {
     @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private String id;
 
-    @NotNull
     @Field("first_name")
     private String firstName;
 
-    @NotNull
     @Field("last_name")
     private String lastName;
 
-    @NotNull
     @Field("email")
     private String email;
 
     @Field("password")
     private String password;
 
+    @NotNull
     @Field("phone_numer")
     private String phoneNumer;
 
@@ -55,7 +53,6 @@ public class Driver implements Serializable {
     @Field("one_time_expiration_time")
     private Instant oneTimeExpirationTime;
 
-    @NotNull
     @Field("driver_license")
     private String driverLicense;
 
