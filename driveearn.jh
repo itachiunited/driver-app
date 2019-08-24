@@ -1,15 +1,15 @@
 entity Driver
 {
 	id String required,
-    firstName String required,
-    lastName String required,
-    email String required,
+    firstName String,
+    lastName String,
+    email String,
     password String,
-    phoneNumer String,
+    phoneNumer String required,
     status Status,
     oneTimeCode String,
     oneTimeExpirationTime Instant,
-    driverLicense String required,
+    driverLicense String,
     phoneType PhoneType,
     duiConviction Boolean,
     felonyConviction Boolean
