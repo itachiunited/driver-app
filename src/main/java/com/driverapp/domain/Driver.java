@@ -80,6 +80,10 @@ public class Driver implements Serializable {
     @Field("services")
     private Set<Services> services = new HashSet<>();
 
+    @DBRef
+    @Field("devices")
+    private Set<DeviceDetails> devices = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
         return id;
@@ -306,6 +310,31 @@ public class Driver implements Serializable {
 
     public void setServices(Set<Services> services) {
         this.services = services;
+    }
+
+    public Set<DeviceDetails> getDevices() {
+        return devices;
+    }
+
+    public Driver devices(Set<DeviceDetails> deviceDetails) {
+        this.devices = deviceDetails;
+        return this;
+    }
+
+    public Driver addDevices(DeviceDetails deviceDetails) {
+        this.devices.add(deviceDetails);
+        deviceDetails.setDriver(this);
+        return this;
+    }
+
+    public Driver removeDevices(DeviceDetails deviceDetails) {
+        this.devices.remove(deviceDetails);
+        deviceDetails.setDriver(null);
+        return this;
+    }
+
+    public void setDevices(Set<DeviceDetails> deviceDetails) {
+        this.devices = deviceDetails;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

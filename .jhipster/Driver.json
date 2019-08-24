@@ -84,6 +84,12 @@
             "otherEntityName": "services",
             "otherEntityRelationshipName": "driver",
             "relationshipName": "services"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "deviceDetails",
+            "otherEntityRelationshipName": "driver",
+            "relationshipName": "devices"
         }
     ],
     "changelogDate": "20190824065131",
