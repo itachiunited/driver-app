@@ -1,0 +1,38 @@
+{
+    "name": "Insurance",
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "InsuranceType",
+            "fieldValues": "AUTO,HOME",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "insuranceProvider",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "insuranceExpDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190824065134",
+    "entityTableName": "insurance",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "driverApp",
+    "applications": "*",
+    "microserviceName": "driverApp"
+}

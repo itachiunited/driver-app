@@ -1,0 +1,82 @@
+{
+    "name": "Vehicle",
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "VehicleType",
+            "fieldValues": "SEDAN,SUV,PICKUP,VAN",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "make",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "model",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "plateNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "supportHeavyTransport",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "vinNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "registrationExpDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "driver",
+            "otherEntityName": "driver",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "insurance",
+            "otherEntityRelationshipName": "vehicle",
+            "relationshipName": "autoInsurance",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190824065133",
+    "entityTableName": "vehicle",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "driverApp",
+    "applications": "*",
+    "microserviceName": "driverApp"
+}
