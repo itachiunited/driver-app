@@ -1,0 +1,96 @@
+{
+    "name": "Driver",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "password",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "INVITED,CONFIRMED,DENIED"
+        },
+        {
+            "fieldName": "oneTimeCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "oneTimeExpirationTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "driverLicense",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phoneType",
+            "fieldType": "PhoneType",
+            "fieldValues": "IPHONE,ANDROID"
+        },
+        {
+            "fieldName": "duiConviction",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "felonyConviction",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "driver",
+            "relationshipName": "location",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "vehicle",
+            "otherEntityRelationshipName": "driver",
+            "relationshipName": "car"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "services",
+            "otherEntityRelationshipName": "driver",
+            "relationshipName": "services"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "deviceDetails",
+            "otherEntityRelationshipName": "driver",
+            "relationshipName": "devices"
+        }
+    ],
+    "changelogDate": "20190824065131",
+    "entityTableName": "driver",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "driverApp"
+}
