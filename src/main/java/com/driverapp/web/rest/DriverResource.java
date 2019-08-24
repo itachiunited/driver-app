@@ -1,6 +1,9 @@
 package com.driverapp.web.rest;
 
+import com.driverapp.domain.DeviceDetails;
 import com.driverapp.domain.Driver;
+import com.driverapp.domain.enumeration.Status;
+import com.driverapp.repository.DeviceDetailsRepository;
 import com.driverapp.repository.DriverRepository;
 import com.driverapp.repository.search.DriverSearchRepository;
 import com.driverapp.web.rest.errors.BadRequestAlertException;
@@ -17,8 +20,8 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import java.util.List;
-import java.util.Optional;
+import java.time.Instant;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -42,9 +45,12 @@ public class DriverResource {
 
     private final DriverSearchRepository driverSearchRepository;
 
-    public DriverResource(DriverRepository driverRepository, DriverSearchRepository driverSearchRepository) {
+    private final DeviceDetailsRepository deviceDetailsRepository;
+
+    public DriverResource(DriverRepository driverRepository, DriverSearchRepository driverSearchRepository, DeviceDetailsRepository deviceDetailsRepository) {
         this.driverRepository = driverRepository;
         this.driverSearchRepository = driverSearchRepository;
+        this.deviceDetailsRepository = deviceDetailsRepository;
     }
 
     /**
@@ -66,6 +72,89 @@ public class DriverResource {
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
+
+    /**
+     * {@code POST  /drivers-phonenumber-capture} : Create a new driver with PENDING and OTC Code Generated.
+     *
+     * @param driver the Driver to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new nGUser, or with status {@code 400 (Bad Request)} if the nGUser has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PostMapping("/drivers-phonenumber-capture")
+    public ResponseEntity<Driver> createNGUserWithPhoneNumber(@Valid @RequestBody Driver driver) throws URISyntaxException {
+        log.debug("REST request to save Driver : {}", driver);
+        if (driver.getId() != null) {
+            throw new BadRequestAlertException("A new driver cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+
+        Random rnd = new Random();
+        int oneTimeCode = 100000 + rnd.nextInt(900000);
+        log.debug("OTC --> "+oneTimeCode);
+        Calendar otcExpiration = Calendar.getInstance();
+        otcExpiration.add(Calendar.MINUTE, 30);
+
+        driver.setOneTimeCode(String.valueOf(oneTimeCode));
+        driver.setOneTimeExpirationTime(otcExpiration.toInstant());
+
+        driver.setStatus(Status.INVITED);
+
+        Driver result = driverRepository.save(driver);
+        driverSearchRepository.save(result);
+        return ResponseEntity.created(new URI("/api/drivers-phonenumber-capture/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
+    @PostMapping("/drivers-verify-token")
+    public ResponseEntity<Driver> createNGUserVerifyToken(@Valid @RequestBody Map driverMap) throws URISyntaxException {
+        log.debug("REST request to save Driver : {}", driverMap);
+
+        // Change this to session
+        if (driverMap.get("id") == null) {
+            throw new BadRequestAlertException("Request Needs to Have an ID", ENTITY_NAME, "idnotpresent");
+        }
+
+        Driver driverFromRep = driverRepository.findUserById((String)driverMap.get("id"));
+        // Check User Status
+        if(!Status.INVITED.equals(driverFromRep.getStatus()))
+        {
+            throw new BadRequestAlertException("User Already Confirmed",ENTITY_NAME,"alreadyConfirmed");
+            // Redirect to Dashboard
+        }
+        // Compare OTC Code & TimeStamp
+
+        Instant currentTime = Instant.now();
+        if(currentTime.isAfter(driverFromRep.getOneTimeExpirationTime()))
+        {
+            throw new BadRequestAlertException("Code Expired. Please request for another code",ENTITY_NAME,"codeExpired");
+        }
+
+        if(null!=driverMap.get("oneTimeCode") && ((String)driverMap.get("oneTimeCode")).equalsIgnoreCase(driverFromRep.getOneTimeCode()))
+        {
+            System.out.println("Valid Code. Customer Authenticated");
+
+            DeviceDetails deviceDetails = new DeviceDetails();
+            deviceDetails.setDeviceId("testWindows");
+            DeviceDetails deviceDetailsFromRep = deviceDetailsRepository.save(deviceDetails);
+
+            Set<DeviceDetails> devices = new HashSet<>();
+            devices.add(deviceDetailsFromRep);
+
+            driverFromRep.setDevices(devices);
+
+            driverFromRep.setStatus(Status.CONFIRMED);
+        }
+        else
+        {
+            throw new BadRequestAlertException("Code Mismatch. Please reenter the code",ENTITY_NAME,"codeMisMatch");
+        }
+        Driver result = driverRepository.save(driverFromRep);
+        driverSearchRepository.save(result);
+        return ResponseEntity.created(new URI("/api/drivers-verify-token/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
 
     /**
      * {@code PUT  /drivers} : Updates an existing driver.

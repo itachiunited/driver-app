@@ -2,6 +2,7 @@ package com.driverapp.web.rest;
 
 import com.driverapp.DriverApp;
 import com.driverapp.domain.Driver;
+import com.driverapp.repository.DeviceDetailsRepository;
 import com.driverapp.repository.DriverRepository;
 import com.driverapp.repository.search.DriverSearchRepository;
 import com.driverapp.web.rest.errors.ExceptionTranslator;
@@ -98,6 +99,9 @@ public class DriverResourceIT {
     private ExceptionTranslator exceptionTranslator;
 
     @Autowired
+    private DeviceDetailsRepository deviceDetailsRepository;
+
+    @Autowired
     private Validator validator;
 
     private MockMvc restDriverMockMvc;
@@ -107,7 +111,7 @@ public class DriverResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final DriverResource driverResource = new DriverResource(driverRepository, mockDriverSearchRepository);
+        final DriverResource driverResource = new DriverResource(driverRepository, mockDriverSearchRepository,deviceDetailsRepository);
         this.restDriverMockMvc = MockMvcBuilders.standaloneSetup(driverResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

@@ -13,4 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DriverRepository extends MongoRepository<Driver, String> {
 
+    public Driver findUserById(String id);
+
 }
