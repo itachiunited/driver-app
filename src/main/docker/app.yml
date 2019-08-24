@@ -8,7 +8,7 @@ services:
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
       - SPRING_DATA_MONGODB_URI=mongodb://driverapp-mongodb:27017
       - SPRING_DATA_MONGODB_DATABASE=driverApp
-      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+      - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
       - SPRING_DATA_JEST_URI=http://driverapp-elasticsearch:9200
       - SPRING_ELASTICSEARCH_REST_URIS=http://driverapp-elasticsearch:9200
   driverapp-mongodb:

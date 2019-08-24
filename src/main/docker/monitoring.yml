@@ -1,7 +1,7 @@
-version: '2'
+version: '3'
 services:
   driverapp-prometheus:
-    image: prom/prometheus:v2.11.1
+    image: prom/prometheus:v2.9.2
     volumes:
       - ./prometheus/:/etc/prometheus/
     command:
@@ -12,7 +12,7 @@ services:
     # grafana/provisioning/datasources/datasource.yml
     network_mode: 'host' # to test locally running service
   driverapp-grafana:
-    image: grafana/grafana:6.2.5
+    image: grafana/grafana:6.1.4
     volumes:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     environment:

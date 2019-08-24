@@ -29,7 +29,7 @@
     ],
     "clientFramework": "angularX",
     "jhiPrefix": "jhi",
-    "jhipsterVersion": "6.2.0",
+    "jhipsterVersion": "6.0.1",
     "jwtSecretKey": "Yjg2YjJjNzJiYzQ1ZTZjMjE1NjdkZGQyMjcyNGVhMjJhODIyYTA5NjA5Njk2M2FkNjM2NzFmZWQ4Njk1OGI1NmFkODA0MzU1ZmE0OWI0ZTYyOThlYWI4MzJlYWE2NTE0NWQ3OTlhMzNmMzA5MzkwYjM3NTI3NjFjOTU4MTM5YWY=",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
